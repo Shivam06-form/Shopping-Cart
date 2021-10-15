@@ -17,7 +17,7 @@ const Products =(props)=>{
       {
         id:(props.id),
         Name:props.Name,
-        Price:props.price,
+        Summary:props.summary,
         Image:props.thumbnail,
         amount:cartCtx.addItem.length,
         totalAmount:cartCtx.totalAmount
@@ -34,7 +34,7 @@ const Products =(props)=>{
           <h2>{props.Name}</h2>
         <img src={props.thumbnail}  alt="Avatar" style={{'width':'100%'}} />
         <div className={classes.container}>
-          <h4><b> ${props.price}</b></h4>
+          <h4><b> {props.Type}</b></h4>
           <p>{props.Name}</p>
        {touched && <button onClick={addItemToCartHandler} >Add To Cart</button>}
        {!touched  && <p>Already In Cart</p>}

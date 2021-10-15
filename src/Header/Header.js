@@ -12,9 +12,26 @@ const Header =()=>{
   
   const getCart= JSON.parse(localStorage.getItem('items'))
   
-  // if (!getCart) {
-  //   return  false
-  // }
+  if (!getCart) {
+  return ( <div className={classes.header} >
+  <ul>
+    <li>
+<h2 className={classes.heading}>Shopping.Com </h2>
+    </li>
+    <li>
+    <h3>
+      <Link to='/CartItems'><span>Cart🛒 {'0'}</span> </Link>  
+    </h3>
+    </li>
+    <li>
+    <h3>
+      <Link to='/home'><span>HOME</span> </Link>  
+    </h3>
+    </li>
+  </ul>
+</div>
+)
+  }
 
 
   const numberOfCartItems =  getCart.reduce((curNumber, item) => {

@@ -11,10 +11,10 @@ const [touched, settouched] = useState(false)
 
 
   const fetchProducts = async () => {
-  const response = await fetch('./products.json', { crossOrigin: 'true' })
+  const response = await fetch(`https://api.tvmaze.com/singlesearch/shows?q=${isProducts}&embed=episodes`)
   const responseData = await response.json();
-
-  const filteredProducts = responseData.filter((user) => user.name.includes(isProducts))
+  console.log(responseData)
+  const filteredProducts = responseData
 
   let loadedProducts=[];
 
@@ -22,15 +22,15 @@ const [touched, settouched] = useState(false)
   return <p>Bla Bla</p>
  }
 
-    for (const key in filteredProducts) {
+   
     loadedProducts.push({
-    id: key,
-    name: filteredProducts[key].name,
-    price: filteredProducts[key].price,
-    CurrentPrice: filteredProducts[key].currency,
-    Image: filteredProducts[key].thumbnail
+    id:filteredProducts.id,
+    name: filteredProducts.name,
+    summary: filteredProducts.summary,
+    CurrentPrice: filteredProducts.currency,
+    Image: filteredProducts.image ? filteredProducts.image.original:'Image NOT FOund'
   })
-  }
+  
   
   settouched(true)
   setProducts(filteredProducts)
@@ -38,16 +38,15 @@ const [touched, settouched] = useState(false)
 
 
 
- const productsList = products.map((meal) => (
+ const productsList = 
     <Products
-    key={meal.id }
-    id={meal.id}
-    Name={meal.name}
-    price={meal.price}
-    CurrentPrice={meal.CurrentPrice}
-    thumbnail={meal.thumbnail} 
+    key={products.id }
+    id={products.id}
+    Name={products.name}
+    summary={products.summary}
+    thumbnail={products.image?products.image.original :'Image NOt Found'} 
       />
-    ));
+    
 
 const SeachValue = (props) => {
     props.preventDefault()
