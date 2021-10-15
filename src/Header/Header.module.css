@@ -1,0 +1,32 @@
+.header{
+border: 5px solid #0000ff;   
+border-radius: 1rem;
+position:top;
+background-color:azure;
+}
+
+.header li{
+font-family: Georgia, 'Times New Roman', Times, serif;
+/* margin: 0;  */
+margin-left: 1rem;
+list-style-type: none;
+display: inline-block
+}
+
+.heading{
+text-align: left; 
+margin-right:47rem;
+color:goldenrod;
+font-family:cursive;
+font-size:2rem;
+}
+
+.header h3{
+    text-align: right;
+    border: 1px solid darkgreen;
+    padding:10px;
+    border-radius:1rem;
+    background-color:gold;
+    padding-right: 2rem;
+}
+
