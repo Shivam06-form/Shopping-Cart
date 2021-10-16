@@ -2,35 +2,37 @@ import React, { useState } from 'react';
 import { Fragment } from 'react';
 import Products from './Products';
 import classes from './searchBar.module.css'
-
+import images from '../Imges/CS-GO-image.jpg'
 
 const SearchBar =()=>{
+  const [isProducts, setIsProducts] = useState('')
  const [products, setProducts,] = useState([])
-const [isProducts, setIsProducts] = useState('')
 const [touched, settouched] = useState(false)
 
 
   const fetchProducts = async () => {
-  const response = await fetch(`https://api.tvmaze.com/singlesearch/shows?q=${isProducts}&embed=episodes`)
+  const response = await fetch(`https://api.tvmaze.com/schedule/full`)
   const responseData = await response.json();
-  console.log(responseData)
-  const filteredProducts = responseData
-
+  
+  const filteredProducts = responseData.filter((user) => user.name.includes(isProducts.trim()))
   let loadedProducts=[];
 
-  if (isProducts.length === 0) {
+  if (isProducts.length === 0 && !isProducts) {
   return <p>Bla Bla</p>
  }
 
-   
+
+  for (const key in filteredProducts) {
     loadedProducts.push({
-    id:filteredProducts.id,
-    name: filteredProducts.name,
-    summary: filteredProducts.summary,
-    CurrentPrice: filteredProducts.currency,
-    Image: filteredProducts.image ? filteredProducts.image.original:'Image NOT FOund'
-  })
-  
+      id:filteredProducts[key].id,
+      name: filteredProducts[key].name,
+      summary: filteredProducts[key].summary,
+      CurrentPrice: filteredProducts[key].currency,
+      Image: filteredProducts[key].image ? filteredProducts[key].image.original:images
+    })
+    
+  }
+
   
   settouched(true)
   setProducts(filteredProducts)
@@ -38,15 +40,15 @@ const [touched, settouched] = useState(false)
 
 
 
- const productsList = 
+ const productsList =  products.map((meal) => (
     <Products
-    key={products.id }
-    id={products.id}
-    Name={products.name}
-    summary={products.summary}
-    thumbnail={products.image?products.image.original :'Image NOt Found'} 
+    key={meal.id }
+    id={meal.id}
+    Name={meal.name}
+    summary={meal.summary}
+    thumbnail={meal.image?meal.image.original :images} 
       />
-    
+))
 
 const SeachValue = (props) => {
     props.preventDefault()

@@ -1,6 +1,6 @@
 import React from 'react';
 import Cart from './Cart/Cart'
-import { Redirect, Route, Switch } from 'react-router-dom';
+import {  Redirect ,Route, Switch } from 'react-router-dom';
 import Header from './Header/Header';
 import SearchBar from './SearchBar/searchbar';
 import CartProvider from './store/CartProvider';
@@ -14,16 +14,16 @@ function App() {
 <div className="App">
 <Header/>
 <Switch>
-  <Route path='/' exact>
-    <Redirect to='/home'  />
+<Route path='/' exact>
+    <Redirect to='/home' />
   </Route>
-<Route path='/CartItems'>
-<Cart/>
-</Route>
-<Route path="/home" exact>
+<Route path='/home' exact>
 <SearchBar/>
 </Route>
-<Route path='/home/:productId'>
+<Route path='/home/:CartItems' exact >
+<Cart/>
+</Route>
+<Route path='/CartItems/:productId'exact>
   <Products/>
 </Route>
 </Switch>

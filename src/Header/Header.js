@@ -20,7 +20,7 @@ const Header =()=>{
     </li>
     <li>
     <h3>
-      <Link to='/CartItems'><span>Cart🛒 {'0'}</span> </Link>  
+      <Link to='/home/CartItem'><span>Cart🛒 {'0'}</span> </Link>  
     </h3>
     </li>
     <li>
@@ -48,7 +48,7 @@ const Header =()=>{
     </li>
     <li>
     <h3>
-      <Link to='/CartItems'><span>Cart🛒 {numberOfCartItems}</span> </Link>  
+      <Link to='/home/CartItems'><span>Cart🛒 {numberOfCartItems}</span> </Link>  
     </h3>
     </li>
     <li>

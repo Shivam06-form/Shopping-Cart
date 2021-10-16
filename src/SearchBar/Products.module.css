@@ -7,8 +7,9 @@
    display:inline-block;
    padding: 1rem;
    background-color:lightblue;
-   border: 2px solid green;
+   border: 3px solid green;
    animation: enter 1s ease-in-out;
+   border-radius: 3rem;
   }
   
   /* On mouse-over, add a deeper shadow */
