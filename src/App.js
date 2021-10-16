@@ -15,12 +15,12 @@ function App() {
 <Header/>
 <Switch>
 <Route path='/' exact>
-    <Redirect to='/home' />
+    <Redirect to='/Shopping-Cart/' />
   </Route>
-<Route path='/home' exact>
+<Route path='/Shopping-Cart/' exact>
 <SearchBar/>
 </Route>
-<Route path='/home/:CartItems' exact >
+<Route path='/Shopping-Cart/:CartItems' exact >
 <Cart/>
 </Route>
 <Route path='/CartItems/:productId'exact>
