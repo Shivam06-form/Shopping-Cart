@@ -1,8 +1,10 @@
 .header{
-border: 5px solid #0000ff;   
+border: 1px solid #0000ff;   
 border-radius: 1rem;
 position:top;
 background-color:azure;
+width: 100%;
+
 }
 
 .header li{
@@ -15,10 +17,14 @@ display: inline-block
 
 .heading{
 text-align: left; 
-margin-right:47rem;
+margin-right:0rem;
 color:goldenrod;
 font-family:cursive;
 font-size:2rem;
+}
+
+.header a:visited{
+color:purple;
 }
 
 .header h3{
@@ -30,3 +36,14 @@ font-size:2rem;
     padding-right: 2rem;
 }
 
+@media screen and (max-width: 640px) {
+    .header {
+    width: 100%;
+     border: 5px solid #0000ff;   
+     border-radius: 1rem;
+     position:top;
+     background-color:azure;
+    }
+
+   
+      }
