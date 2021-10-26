@@ -5,10 +5,6 @@ const Pagination = (props) => {
 
   const numPages = Math.ceil(props.products.length/props.resultPerPage )
 
-//Page 1, and there are other pages
-
-
-
 if (props.currentPage === 1 && numPages > 1) {
   return (
 
@@ -18,7 +14,7 @@ if (props.currentPage === 1 && numPages > 1) {
   </div>
   )
 }
-if (props.currentPage === numPages ) {
+if (props.currentPage === numPages && numPages>1) {
   return (
 <div className={classes.post}>
 <button onClick={() => props.nextPage(-1)} >Page {props.currentPage-1} </button>
@@ -36,6 +32,8 @@ if (props.currentPage < numPages ) {
   </Fragment>
   )
 }
+
+
 
   return (
     <div className={classes.post}>
