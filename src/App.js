@@ -3,10 +3,9 @@ import Cart from './Cart/Cart'
 import {  Redirect ,Route, Switch } from 'react-router-dom';
 import Header from './Header/Header';
 import SearchBar from './SearchBar/searchbar';
-import CartProvider from './store/CartProvider';
 import Products from './SearchBar/Products';
 import Info from './Information/info';
-
+import { CartProvider } from "react-use-cart";
 
 function App() {
   return (

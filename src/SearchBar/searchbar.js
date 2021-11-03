@@ -8,7 +8,6 @@ import Pagination  from '../Post/Pagination'
 
 
 const SearchBar =()=>{
-
   const [isProducts, setIsProducts] = useState('')
   const [products, setProducts,] = useState([])
   const [touched, settouched] = useState(false)
@@ -19,7 +18,6 @@ const resultPerPage = 20
 const fetchProducts = async () => {
   const response = await fetch(` https://api.tvmaze.com/shows`)
   const responseData = await response.json();
-console.log(responseData[0])
   const filteredProducts = responseData.filter((user) => user.name.toLowerCase().trim().includes(isProducts.toLowerCase().trim()))
 
   
@@ -27,12 +25,9 @@ console.log(responseData[0])
     return <p>Bla Bla</p>
   }
   
-  
-
   settouched(true)
   setProducts(filteredProducts)
 }
-
 
 
 const indexOfFirstPost =( currentPage -1 ) * resultPerPage;
@@ -40,7 +35,31 @@ const indexOfLastPost = currentPage * resultPerPage;
 const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost)
 const nextPage = (number) => setCurrentPage(currentPage + number)
 
- const productsList =  currentPosts.map((meal) => (
+
+
+
+
+const productsList =  currentPosts.map((meal) => {
+//   let updatedItems=[]; 
+//   const addItemToCartHandler = () => {
+//     const getItem  = JSON.parse(localStorage.getItem('items'))
+//   updatedItems.push(meal);
+//   localStorage.setItem('items',JSON.stringify(updatedItems));
+//   if(!getItem) {return false}
+//   if(updatedItems.filter((item)=> item.name === meal.name)){
+//     let newItems = [];
+//     localStorage.setItem('items',JSON.stringify(newItems.concat(getItem,meal)));
+//   }
+
+// }
+
+// const removeItemToCartHandler =()=> {
+//   const getItem  = JSON.parse(localStorage.getItem('items'))
+//   const deleteItem = getItem.filter((item)=> item.name !== meal.name);
+//   localStorage.setItem('items',JSON.stringify(deleteItem));
+// }
+
+    return(
     <Products
     key={meal.id }
     id={meal.id}
@@ -50,12 +69,13 @@ const nextPage = (number) => setCurrentPage(currentPage + number)
     genres={meal.genres}
     thumbnail={meal.image?meal.image.original :images}
     summary={meal.summary}
-    Price={meal.rating.average}
+    price={meal.rating.average}
     runtime={meal.runtime}
     url={meal.url}
     rating={meal.rating.average}
       />
- ))
+      )
+ })
  const SeachValue = (props) => {
    props.preventDefault()
    setIsProducts(props.target.value)

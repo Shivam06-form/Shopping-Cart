@@ -1,44 +1,20 @@
 import classes from './Products.module.css'
-import { Fragment,  useContext,useState} from 'react';
-import CartContext from '../store/cart-context';
+import { Fragment} from 'react';
 import { NavLink } from 'react-router-dom';
 // import Info from '../Information/info';
 import {  AiOutlineShoppingCart} from "@react-icons/all-files/ai/AiOutlineShoppingCart";
 import {  HiShoppingCart} from "@react-icons/all-files/hi/HiShoppingCart";
 import { useMediaQuery } from 'react-responsive';
-
-
+import {  useCart } from "react-use-cart"
 
 const Products =(props)=>{
-const cartCtx = useContext(CartContext)
-
-  localStorage.setItem('itemsTotal',JSON.stringify(cartCtx.totalAmount))
-  const [touched, settouched] = useState(true)
-  
-  const addItemToCartHandler = ((item) => {
-    item.preventDefault()
-    cartCtx.addItem(
-      {
-        id:(props.id),
-        Name:props.Name,
-        AirDate:props.airdate,
-        EndDate:props.EndDate,
-        Image:props.thumbnail,
-        genres:props.genres,
-		Price:props.Price,
-        amount:cartCtx.addItem.length,
-        totalAmount:cartCtx.totalAmount,
-		url:props.url
-      })
-      
-	
-      return settouched(false)
-    })
-
-console.log(cartCtx.items)
+// const getItem = JSON.parse(localStorage.getItem('items'))
+const { addItem,items} = useCart();
+const isProducts=(items.filter((item)=>(item.Name!==props.Name)))
 
 
 if ( useMediaQuery({ query: '(max-width: 540px)' })) {
+	
 	return(
 		<Fragment>
         <div className={classes.products}>
@@ -47,12 +23,14 @@ if ( useMediaQuery({ query: '(max-width: 540px)' })) {
         <div className={classes.container}>
 		<p className={classes.PG}> imbd-{props.rating}</p>
           <h4>	<NavLink to={`/Shopping-Cart/Info/${props.id}`} > View More </NavLink></h4>
-       {touched && <button onClick={addItemToCartHandler} >Add To Cart</button>}
-       {!touched  && <p>Already In Cart</p>}
         </div>
       </div>
       </Fragment>
 	)
+}
+
+if (!isProducts) {
+	return <h2> In Cart</h2>
 }
 
 
@@ -82,16 +60,13 @@ if ( useMediaQuery({ query: '(max-width: 540px)' })) {
 				<i className={classes.fas}><a href={props.url} target="_blank" rel="noreferrer">Downlaod</a></i>
 				</button>
 			
-				{/* <button>
-					<i className="fas fa-thumbs-up"></i> 97%
-				</button> */}
-		
+			
                 
 
-{touched && <button onClick={addItemToCartHandler} ><i className={classes.fas}></i><AiOutlineShoppingCart/></button>}
-{!touched &&  <h1>In Cart <HiShoppingCart/> </h1>}
+			{isProducts&&<button onClick={() => addItem(props)}><AiOutlineShoppingCart/></button>}
+ {<button onClick={props.onRemove} ><i className={classes.fas}></i><HiShoppingCart/> </button>}
+
                 
-					
 			</div>	
 			</div>
 		</div>
