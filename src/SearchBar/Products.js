@@ -8,15 +8,14 @@ import { useMediaQuery } from 'react-responsive';
 import {  useCart } from "react-use-cart"
 
 const Products =(props)=>{
-// const getItem = JSON.parse(localStorage.getItem('items'))
-const { addItem,items} = useCart();
-const isProducts=(items.filter((item)=>(item.Name!==props.Name)))
 
+	const {addItem,removeItem} = useCart();
 
-if ( useMediaQuery({ query: '(max-width: 540px)' })) {
 	
-	return(
-		<Fragment>
+	if ( useMediaQuery({ query: '(max-width: 540px)' })) {
+		
+		return(
+			<Fragment>
         <div className={classes.products}>
           <h2>{props.Name}</h2>
         <img src={props.thumbnail}  alt="Avatar" style={{'width':'100%'}} />
@@ -29,9 +28,9 @@ if ( useMediaQuery({ query: '(max-width: 540px)' })) {
 	)
 }
 
-if (!isProducts) {
-	return <h2> In Cart</h2>
-}
+
+console.log(props.Cart)
+
 
 
   return (
@@ -59,14 +58,8 @@ if (!isProducts) {
 				<button>
 				<i className={classes.fas}><a href={props.url} target="_blank" rel="noreferrer">Downlaod</a></i>
 				</button>
-			
-			
-                
-
-			{isProducts&&<button onClick={() => addItem(props)}><AiOutlineShoppingCart/></button>}
- {<button onClick={props.onRemove} ><i className={classes.fas}></i><HiShoppingCart/> </button>}
-
-                
+			{props.Cart2&&<button onClick={()=>addItem(props)}><AiOutlineShoppingCart /></button>}
+            {props.Cart&&<button onClick={()=>removeItem(props.id)} ><HiShoppingCart /> </button>}
 			</div>	
 			</div>
 		</div>

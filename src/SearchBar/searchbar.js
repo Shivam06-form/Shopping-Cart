@@ -4,6 +4,7 @@ import Products from './Products';
 import classes from './searchBar.module.css'
 import images from '../Imges/CS-GO-image.jpg'
 import Pagination  from '../Post/Pagination' 
+// import { useCart } from 'react-use-cart';
 
 
 
@@ -59,10 +60,12 @@ const productsList =  currentPosts.map((meal) => {
 //   localStorage.setItem('items',JSON.stringify(deleteItem));
 // }
 
+
+
     return(
     <Products
-    key={meal.id }
     id={meal.id}
+    key={meal.id }
     Name={meal.name}
     airdate={meal.premiered}
     EndDate={meal.ended}
@@ -73,6 +76,8 @@ const productsList =  currentPosts.map((meal) => {
     runtime={meal.runtime}
     url={meal.url}
     rating={meal.rating.average}
+    Cart={false}
+    Cart2={true}
       />
       )
  })
